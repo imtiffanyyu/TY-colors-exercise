@@ -30,14 +30,16 @@ app.set('views', './src/views'); // the second part specifies where the views ar
 app.set('view engine', 'jade');
 
 app.get('/', function (req, res) {
-	fs.readFile('./colors.json', function (error, data) {
+	fs.readFile('./colors.json', function (error, data) { // file is an object with an array called colorsArray
 		if (error) {
 			console.log(error);
 		}
 
 		var parsedData = JSON.parse(data);
-		console.log(parsedData);
-		res.render('index', {colors: parsedData.colorsArray
+		console.log(parsedData); // this only happens when someone opens it in a browser. shows up in the terminal
+		res.render('index', { // send response
+			colors: parsedData.colorsArray // send the data, you need to look at the file to know
+		// colors is not a meaningful name
 		});
 	});
 });
